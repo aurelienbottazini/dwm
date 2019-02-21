@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 10;        /* border pixel of windows */
@@ -17,6 +18,10 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray1, col_cyan,  col_cyan  },
 };
+
+static const char *upvol[]   = { "pulseaudio-rofi.sh", "--volume_up",       NULL };
+static const char *downvol[] = { "pulseaudio-rofi.sh", "--volume_down",     NULL };
+static const char *mutevol[] = { "pulseaudio-rofi.sh", "--mute",            NULL };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -95,6 +100,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+        { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+        { 0,                            XF86XK_AudioMute, spawn, {.v = mutevol } },
+        { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
 };
 
 /* button definitions */
